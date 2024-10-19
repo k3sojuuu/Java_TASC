@@ -6,18 +6,20 @@ class InvalidNumberException extends Exception {
     public InvalidNumberException(String message) {
         super(message);
     }
+    //custom exception
 }
 
 public class ExceptionTest2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        ExceptionTest2 test2 = new ExceptionTest2();
         int a = 0;
-        a = getInput(scanner, "Nhập số cần kiểm tra: ");
+        a = test2.getInput(scanner, "Nhập số cần kiểm tra: ");
         System.out.println("Number invalid: " + a);
         scanner.close();
     }
 
-    private static int getInput(Scanner scanner, String str) {
+    public int getInput(Scanner scanner, String str) {
         int number = 0;
         boolean validInput = false;
 
@@ -31,9 +33,9 @@ public class ExceptionTest2 {
                 }
                 validInput = true;
             } catch (NumberFormatException e) {
-                System.out.println("Lỗi: Định dạng không hợp lệ. Vui lòng nhập một số nguyên.");
+                System.out.println(" Vui lòng nhập một số nguyên.");
             } catch (InvalidNumberException e) {
-                System.out.println("Lỗi: " + e.getMessage());
+                System.out.println("Lỗi " + e.getMessage());
             }
         }
         return number;

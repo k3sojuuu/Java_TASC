@@ -2,7 +2,7 @@ package Collection;
 
 
 
-public class User {
+public class User implements Comparable<User> {
     private String name;
     private Integer age;
     private String addres;
@@ -40,6 +40,11 @@ public class User {
         this.addres = addres;
     }
 
+    @Override
+    public int compareTo(User other) {
+        return Integer.compare(this.age, other.age);
+    }
+//this.name.compareTo(other.name)
     @Override
     public String toString() {
         return "User///" +

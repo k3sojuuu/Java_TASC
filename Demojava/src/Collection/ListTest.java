@@ -2,10 +2,8 @@ package Collection;
 
 import Collection.User;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ListTest {
     public static void main(String[] args) {
@@ -20,6 +18,29 @@ public class ListTest {
         userList.add(new User("Đạt", 30, "Ha Nam"));
         userList.add(new User("Nhung", 28, "Ha Nam"));
         userList.add(new User("Huy",28,"Ha Noi"));
+
+        List<User> userList2 = userList
+                .stream()
+                .filter(user -> user.getAge() == 28)
+                .collect(Collectors.toList());
+
+        List<User> userProvince = userList.stream().
+                filter(user -> user.getAddres() == "Nam Dinh")
+                .collect(Collectors.toList());
+
+
+
+        if (userProvince != null){
+            System.out.println("Khong co khach hang nao");
+        }else {
+            System.out.println("Danh sach cac user theo tinh:");
+            for (User up: userProvince) {
+                System.out.println(up);
+            }
+        }
+        for (User userS: userList2) {
+            System.out.println("Danh sach stream" + userS);
+        }
 
         // In ra danh sách User
         System.out.println("Danh sách người dùng:");
@@ -105,4 +126,10 @@ public class ListTest {
         sc.close();
     }
 }
+/*Các đặc điểm của List:Các phần tử truy cập nhanh theo chỉ số và các phần tử có thể trùng lặp
+*có các triển khai sau:ArrayList,LinkedList
+*
+*
+*
+* */
 
