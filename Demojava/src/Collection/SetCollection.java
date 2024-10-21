@@ -32,29 +32,48 @@ public class SetCollection {
     }
 
     public static void main(String[] args) {
-        SetCollection setCollection = new SetCollection();
-        setCollection.addHashSet(new User("Tan",22,"Ha Noi"));
-        setCollection.addHashSet(new User("Dat",23,"Ha Noi"));
-        setCollection.addHashSet(new User("Nhung",24,"Ha Noi"));
+//        SetCollection setCollection = new SetCollection();
+//        setCollection.addHashSet(new User("Tan",22,"Ha Noi"));
+//        setCollection.addHashSet(new User("Dat",23,"Ha Noi"));
+//        setCollection.addHashSet(new User("Nhung",24,"Ha Noi"));
+//
+//        setCollection.addTreeSet(new User("Tan",22,"Ha Noi"));
+//        setCollection.addTreeSet(new User("Dat",24,"Ha Noi"));
+//        setCollection.addTreeSet(new User("Nhung",21,"Ha Noi"));
+//
+//        EnumSet<Day> allDays = EnumSet.allOf(Day.class);
+//
+//        setCollection.loopHashSet();
+//        setCollection.loopTreeSet();
+//
+//        System.out.println("Tất cả các ngày: " + allDays);
+//
+//        EnumSet<Day> workDays = EnumSet.range(Day.MONDAY, Day.FRIDAY);
+//        System.out.println("Các ngày làm việc: " + workDays);
+//
+//        if (workDays.contains(Day.SATURDAY)) {
+//            System.out.println("Thứ Bảy là ngày làm việc.");
+//        } else {
+//            System.out.println("Thứ Bảy không phải là ngày làm việc.");
+//        }
+        Set<User1> users = new HashSet<>();
+        users.add(new User1(1, "John", 25));  // Đối tượng 1
+        users.add(new User1(1, "John", 25));  // Đối tượng 2
 
-        setCollection.addTreeSet(new User("Tan",22,"Ha Noi"));
-        setCollection.addTreeSet(new User("Dat",24,"Ha Noi"));
-        setCollection.addTreeSet(new User("Nhung",21,"Ha Noi"));
+        System.out.println(users.size());
 
-        EnumSet<Day> allDays = EnumSet.allOf(Day.class);
+        for (User1 us: users) {
+            System.out.println(us.toString());
+        }
 
-        setCollection.loopHashSet();
-        setCollection.loopTreeSet();
+        Set<String> us1 = new HashSet<>();
+        us1.add("Link");
+        us1.add("Link");
 
-        System.out.println("Tất cả các ngày: " + allDays);
-
-        EnumSet<Day> workDays = EnumSet.range(Day.MONDAY, Day.FRIDAY);
-        System.out.println("Các ngày làm việc: " + workDays);
-
-        if (workDays.contains(Day.SATURDAY)) {
-            System.out.println("Thứ Bảy là ngày làm việc.");
-        } else {
-            System.out.println("Thứ Bảy không phải là ngày làm việc.");
+        for (String uss :us1) {
+            System.out.println(uss);
+        }
         }
     }
-}
+
+

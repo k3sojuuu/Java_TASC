@@ -15,12 +15,5 @@ public class Main {
         controller.showMenu();
 
 
-//        Repo repo = new Repo();
-//        List<Customers> cus =repo.getAllCustomers();
-//        System.out.println("Danh sach khach hang");
-//        System.out.println("| id  |   Ten                  |    Email                    |   PhoneNumber             |");
-//        for (Customers cs: cus) {
-//            System.out.println(cs.toString());
-//        }
     }
 }

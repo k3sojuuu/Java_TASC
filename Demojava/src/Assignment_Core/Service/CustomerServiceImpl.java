@@ -182,6 +182,8 @@ public class CustomerServiceImpl implements CustomerService{
     public void deleteCustomer() {
         while (true){
             List<Customers> cus = repo.getAllCustomers();
+            List<Customers> cus1 = repo.getAllDelete();
+
             for (Customers customers: cus){
                 System.out.println(customers.toString());
             }
@@ -197,9 +199,13 @@ public class CustomerServiceImpl implements CustomerService{
                     break;
                 }
             }
-            for (Customers customers: cus){
+            System.out.println("Danh sach da xoa:");
+            for (Customers customers: cus1) {
                 System.out.println(customers.toString());
             }
+//            for (Customers customers: cus){
+//                System.out.println(customers.toString());
+//            }
             System.out.println("Do you want to update another customer? (y/n): ");
             String response = sc.nextLine().toLowerCase();
 

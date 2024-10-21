@@ -6,4 +6,3 @@
 7,Nguyen Hoang Long,hoanglong@gmail.com,0934634643
 8,Nguyen Minh Khang,khangnguyen@gmail.com,09396394643
 9,Ho Ngoc Hanh,hanhvip15@fpt.vn,09328832324
-10,Nguyen Thanh Tung,nghsdgdsg@fpt.vn,092343243244
