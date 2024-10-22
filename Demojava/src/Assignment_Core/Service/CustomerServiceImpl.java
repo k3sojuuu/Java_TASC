@@ -4,9 +4,7 @@ import Assignment_Core.Model.Customers;
 import Assignment_Core.Repository.Repo;
 import Assignment_Core.View.Function;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CustomerServiceImpl implements CustomerService{
     Scanner sc = new Scanner(System.in);
@@ -17,10 +15,12 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void viewAllCustomer() {
         System.out.println("List customer");
-        System.out.println("| id  |   Name                  |    Email                    |   PhoneNumber             |");
-        List<Customers> cus = repo.getAllCustomers();
-        for (Customers cs: cus) {
-            System.out.println(cs);
+        System.out.println("| id   |   Name                    |    Email                  |   PhoneNumber        |");
+        System.out.println("---------------------------------------------------------------------------------------");
+        List<Customers> customers = repo.getAllCustomers();
+        for (Customers cus : customers) {
+            System.out.printf("| %-4s | %-25s | %-25s | %-20s |\n", cus.getId(), cus.getName(), cus.getEmail(), cus.getPhoneNumber());
+            System.out.println("---------------------------------------------------------------------------------------");
         }
         System.out.println("Press any key to exit and return to the main menu...");
         sc.nextLine();
@@ -32,7 +32,6 @@ public class CustomerServiceImpl implements CustomerService{
             System.out.println("Enter the number of customers you want to add:");
             List<Customers> customers =new ArrayList<>();
             int numUser = 0;
-
             while (true) {
                 try {
                     numUser = sc.nextInt();
@@ -49,14 +48,32 @@ public class CustomerServiceImpl implements CustomerService{
 
             sc.nextLine();
             List<Customers> existingCustomers = repo.getAllCustomers();
-
+            String id;
+            String email;
+            String phoneNumber;
             for (int i = 0; i < numUser; i++) {
                 System.out.println("Enter info customer " + (i + 1) + ":");
-                System.out.println("Enter id:");
-                String id = sc.nextLine();
+                while (true) {
+                    System.out.println("Enter id:");
+                    id = sc.nextLine();
+
+                    boolean idExists = false;
+                    for (Customers cus : existingCustomers) {
+                        if (cus.getId().equals(id)) {
+                            idExists = true;
+                            break;
+                        }
+                    }
+                    if (idExists) {
+                        System.out.println("This id already exists.Please enter a different id.");
+                    } else {
+                        break;
+                    }
+                }
+
                 System.out.print("Enter name: ");
                 String name = sc.nextLine();
-                String email;
+
 
                 while (true) {
                     System.out.print("Enter Email: ");
@@ -67,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService{
                         System.out.println("Invalid email format. Please enter a valid email.");
                     }
                 }
-                String phoneNumber;
+
                 while (true) {
                     System.out.print("Enter Phone Number: ");
                     phoneNumber = sc.nextLine();
@@ -80,47 +97,52 @@ public class CustomerServiceImpl implements CustomerService{
                     }
                 }
                 existingCustomers.add(new Customers(id, name, email, phoneNumber));
-                System.out.println("Add success customer" + name);
+                System.out.println("Add success customer " + name);
             }
             repo.saveAllCustomers(existingCustomers);
             System.out.println("List Customer Update:");
             for (Customers es: existingCustomers) {
-                System.out.println(es.toString());
+                System.out.printf("| %-4s | %-25s | %-25s | %-20s |\n",es.getId(), es.getName(), es.getEmail(), es.getPhoneNumber());
+                System.out.println("---------------------------------------------------------------------------------------");
             }
 
             System.out.println("Press any key to exit and return to the main menu...");
             sc.nextLine();
         }catch (Exception e){
-            System.out.println("Errr");
+            System.out.println("Error");
         }
     }
 
     @Override
     public void findCustomerByPhoneNumber() {
-        List<Customers> customers = repo.getAllCustomers();
-        boolean flag= false;
+        Map<String, Customers> customerMap = new HashMap<>();
+        for (Customers cus : repo.getAllCustomers()) {
+            customerMap.put(cus.getPhoneNumber(), cus);
+        }
+
         System.out.println("Enter the phone number you want to find:");
         String phone = sc.nextLine();
-        for (Customers cus: customers) {
-            if (cus.getPhoneNumber().equals(phone)){
-                System.out.println("Info Customer " + phone);
-                System.out.println(cus.toString());
-                flag = true;
-                break;
-            }
-        }if (!flag) {
+
+        Customers customer = customerMap.get(phone);
+        if (customer != null) {
+            System.out.println("Info Customer with phone number " + phone + ":");
+            System.out.println(customer.toString());
+        } else {
             System.out.println("Phone Number invalid. No customer found with this phone number.");
         }
+
         System.out.println("Press any key to exit and return to the main menu...");
         sc.nextLine();
     }
+
 
     @Override
     public void updateCustomer() {
         while (true){
             List<Customers> customersUpdate = repo.getAllCustomers();
-            for (Customers cus: customersUpdate){
-                System.out.println(cus.toString());
+            for (Customers es: customersUpdate){
+                System.out.printf("| %-4s | %-25s | %-25s | %-20s |\n",es.getId(), es.getName(), es.getEmail(), es.getPhoneNumber());
+                System.out.println("---------------------------------------------------------------------------------------");
             }
             System.out.println("Enter customerId want to change: ");
             String id = sc.nextLine();
@@ -162,8 +184,9 @@ public class CustomerServiceImpl implements CustomerService{
                 repo.saveAllCustomers(customersUpdate);
                 List<Customers> newCs = repo.getAllCustomers();
                 System.out.println("Customer information updated successfully.");
-                for (Customers css:newCs) {
-                    System.out.println(css.toString());
+                for (Customers es:newCs) {
+                    System.out.printf("| %-4s | %-25s | %-25s | %-20s |\n",es.getId(), es.getName(), es.getEmail(), es.getPhoneNumber());
+                    System.out.println("---------------------------------------------------------------------------------------");
                 }
             } else {
                 System.out.println("Customer with ID " + id + " not found.");
@@ -199,13 +222,11 @@ public class CustomerServiceImpl implements CustomerService{
                     break;
                 }
             }
-            System.out.println("Danh sach da xoa:");
-            for (Customers customers: cus1) {
-                System.out.println(customers.toString());
+
+            for (Customers es: cus){
+                System.out.printf("| %-4s | %-25s | %-25s | %-20s |\n",es.getId(), es.getName(), es.getEmail(), es.getPhoneNumber());
+                System.out.println("---------------------------------------------------------------------------------------");
             }
-//            for (Customers customers: cus){
-//                System.out.println(customers.toString());
-//            }
             System.out.println("Do you want to update another customer? (y/n): ");
             String response = sc.nextLine().toLowerCase();
 

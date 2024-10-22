@@ -51,7 +51,7 @@ public class Repo {
 
     public List<Customers> getAllDelete(){
         List<Customers> customers = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_DELETE))){
             String line;
             while ((line = reader.readLine()) != null){
                 String[] data = line.split(",");

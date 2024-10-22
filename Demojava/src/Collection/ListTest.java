@@ -19,6 +19,19 @@ public class ListTest {
         userList.add(new User("Nhung", 28, "Ha Nam"));
         userList.add(new User("Huy",28,"Ha Noi"));
 
+        Iterator<User> iterator = userList.iterator();
+        while (iterator.hasNext()) {
+            User element = iterator.next();
+            System.out.println(element);
+        }
+
+        Iterator<User> iterator1 = userList.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
+        }
+        System.out.println("---------");
+
+
         List<User> userList2 = userList
                 .stream()
                 .filter(user -> user.getAge() == 28)
@@ -68,60 +81,86 @@ public class ListTest {
 
         /////////////Test ListConsole///////
 
-        System.out.println("Nhập số lượng người dùng muốn add: ");
-        int numUser = 0;
+//        System.out.println("Nhập số lượng người dùng muốn add: ");
+//        int numUser = 0;
+//
+//        while (true) {
+//            try {
+//                numUser = sc.nextInt();
+//                if (numUser <= 0) {
+//                    System.out.println("Vui lòng nhập lại số user");
+//                } else {
+//                    break;
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Đầu vào không hợp lệ, vui lòng nhập lại");
+//                sc.next();
+//            }
+//        }
+//
+//        sc.nextLine();
+//
+//        for (int i = 0; i < numUser; i++) {
+//            System.out.println("Nhập thông tin cho người dùng " + (i + 1) + ":");
+//            System.out.print("Tên: ");
+//            String name = sc.nextLine();
+//            int age = 0;
+//
+//            while (true) {
+//                System.out.print("Tuổi: ");
+//                try {
+//                    age = sc.nextInt();
+//                    if (age <= 0) {
+//                        System.out.println("Nhập sai tuổi, vui lòng nhập lại");
+//                    } else {
+//                        break;
+//                    }
+//                } catch (Exception e) {
+//                    System.out.println("Sai tuổi, vui lòng nhập lại");
+//                    sc.next();
+//                }
+//            }
+//
+//            sc.nextLine();
+//
+//            System.out.print("Nhập địa chỉ: ");
+//            String address = sc.nextLine();
+//
+//            User user = new User(name, age, address);
+//            userList.add(user);
+//        }
+//
+//
+//        System.out.println("\nDanh sách người dùng:");
+//        for (User users : userList) {
+//            System.out.println(users);
+//        }
 
-        while (true) {
-            try {
-                numUser = sc.nextInt();
-                if (numUser <= 0) {
-                    System.out.println("Vui lòng nhập lại số user");
-                } else {
-                    break;
-                }
-            } catch (Exception e) {
-                System.out.println("Đầu vào không hợp lệ, vui lòng nhập lại");
-                sc.next();
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Banana");
+        list.add("Apple");
+        list.add("Cherry");
+
+        // Sắp xếp theo thứ tự bảng chữ cái
+        Collections.sort(list, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
             }
-        }
+        });
 
-        sc.nextLine();
+        System.out.println(list);
 
-        for (int i = 0; i < numUser; i++) {
-            System.out.println("Nhập thông tin cho người dùng " + (i + 1) + ":");
-            System.out.print("Tên: ");
-            String name = sc.nextLine();
-            int age = 0;
-
-            while (true) {
-                System.out.print("Tuổi: ");
-                try {
-                    age = sc.nextInt();
-                    if (age <= 0) {
-                        System.out.println("Nhập sai tuổi, vui lòng nhập lại");
-                    } else {
-                        break;
-                    }
-                } catch (Exception e) {
-                    System.out.println("Sai tuổi, vui lòng nhập lại");
-                    sc.next();
-                }
+        // Sắp xếp theo độ dài của chuỗi
+        Collections.sort(list, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return Integer.compare(o1.length(), o2.length());
             }
+        });
 
-            sc.nextLine();
-
-            System.out.print("Nhập địa chỉ: ");
-            String address = sc.nextLine();
-
-            User user = new User(name, age, address);
-            userList.add(user);
-        }
-
-
-        System.out.println("\nDanh sách người dùng:");
-        for (User users : userList) {
-            System.out.println(users);
-        }
+        System.out.println(list);
 
         sc.close();
     }

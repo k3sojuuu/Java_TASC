@@ -40,6 +40,19 @@ public class User implements Comparable<User> {
         this.addres = addres;
     }
 
+    //    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) return true;
+//        if (obj == null || getClass() != obj.getClass()) return false;
+//        User1 user1 = (User1) obj;
+//        return id == user1.id && name.equals(user1.name) && age == user1.age;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return java.util.Objects.hash(id, name, age);
+//    }
+
     @Override
     public int compareTo(User other) {
         return Integer.compare(this.age, other.age);
