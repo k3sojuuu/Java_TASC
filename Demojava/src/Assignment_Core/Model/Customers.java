@@ -1,27 +1,19 @@
 package Assignment_Core.Model;
 
 public class Customers {
-    private String id;
     private String name;
     private String email;
     private String phoneNumber;
 
     // Constructor
-    public Customers(String id, String name, String email, String phoneNumber) {
-        this.id = id;
+    public Customers( String name, String email, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
     // Getter và Setter
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -39,6 +31,7 @@ public class Customers {
         this.email = email;
     }
 
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -49,7 +42,7 @@ public class Customers {
 
     @Override
     public String toString() {
-        return "| " + id + "   |" +
+        return
                 "   " + name +  "   |" +
                 "  " + email + "        |" +
                 " " + phoneNumber + "   |";

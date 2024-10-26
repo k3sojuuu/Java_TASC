@@ -63,7 +63,7 @@ public class CustomerController  {
     private void addNewCustomer() throws IOException{
         service.addNewCustomer();
     }
-
+//
     private void findCusByPhoneNumber(){
         service.findCustomerByPhoneNumber();
     }
@@ -74,26 +74,5 @@ public class CustomerController  {
 
     private void deleteCustomer(){
         service.deleteCustomer();
-    }
-
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
-        return email.matches(emailRegex);
-    }
-
-
-    private boolean isValidPhoneNumber(String phoneNumber) {
-        String phoneRegex = "^\\d{10,15}$";
-        return phoneNumber.matches(phoneRegex);
-    }
-
-    private boolean isPhoneNumberDuplicate(String phoneNumber) {
-        List<Customers> existingCustomers = repo.getAllCustomers();
-        for (Customers customer : existingCustomers) {
-            if (customer.getPhoneNumber().equals(phoneNumber)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
